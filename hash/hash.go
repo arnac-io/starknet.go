@@ -57,7 +57,7 @@ func CalculateTransactionHashCommon(
 // Returns:
 // - *felt.Felt: a pointer to a felt.Felt object that represents the calculated hash.
 // - error: an error object if there was an error during the hash calculation.
-func ClassHash(contract rpc.ContractClass) *felt.Felt {
+func ClassHash(contract rpc.ContractClass) (*felt.Felt, error) {
 	// https://docs.starknet.io/documentation/architecture_and_concepts/Smart_Contracts/class-hash/
 
 	Version := "CONTRACT_CLASS_V" + contract.ContractClassVersion
@@ -66,10 +66,13 @@ func ClassHash(contract rpc.ContractClass) *felt.Felt {
 	ExternalHash := hashEntryPointByType(contract.EntryPointsByType.External)
 	L1HandleHash := hashEntryPointByType(contract.EntryPointsByType.L1Handler)
 	SierraProgamHash := curve.Curve.PoseidonArray(contract.SierraProgram...)
-	ABIHash := curve.Curve.StarknetKeccak([]byte(contract.ABI))
+	ABIHash, err := curve.Curve.StarknetKeccak([]byte(contract.ABI))
+	if err != nil {
+		return nil, err
+	}
 
 	// https://docs.starknet.io/documentation/architecture_and_concepts/Network_Architecture/transactions/#deploy_account_hash_calculation
-	return curve.Curve.PoseidonArray(ContractClassVersionHash, ExternalHash, L1HandleHash, ConstructorHash, ABIHash, SierraProgamHash)
+	return curve.Curve.PoseidonArray(ContractClassVersionHash, ExternalHash, L1HandleHash, ConstructorHash, ABIHash, SierraProgamHash), nil
 }
 
 // hashEntryPointByType calculates the hash of an entry point by type.
