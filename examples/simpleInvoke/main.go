@@ -8,11 +8,11 @@ import (
 	"time"
 
 	"github.com/NethermindEth/juno/core/felt"
-	"github.com/NethermindEth/starknet.go/account"
-	"github.com/NethermindEth/starknet.go/rpc"
-	"github.com/NethermindEth/starknet.go/utils"
+	"github.com/arnac-io/starknet.go/account"
+	"github.com/arnac-io/starknet.go/rpc"
+	"github.com/arnac-io/starknet.go/utils"
 
-	setup "github.com/NethermindEth/starknet.go/examples/internal"
+	setup "github.com/arnac-io/starknet.go/examples/internal"
 )
 
 // NOTE : Please add in your keys only for testing purposes, in case of a leak you would potentially lose your funds.

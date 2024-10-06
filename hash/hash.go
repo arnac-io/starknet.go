@@ -2,9 +2,9 @@ package hash
 
 import (
 	"github.com/NethermindEth/juno/core/felt"
-	"github.com/NethermindEth/starknet.go/contracts"
-	"github.com/NethermindEth/starknet.go/curve"
-	"github.com/NethermindEth/starknet.go/rpc"
+	"github.com/arnac-io/starknet.go/contracts"
+	"github.com/arnac-io/starknet.go/curve"
+	"github.com/arnac-io/starknet.go/rpc"
 )
 
 // CalculateTransactionHashCommon calculates the transaction hash common to be used in the StarkNet network - a unique identifier of the transaction.
