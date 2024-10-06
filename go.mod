@@ -1,4 +1,4 @@
-module github.com/NethermindEth/starknet.go
+module github.com/arnac-io/starknet.go
 
 go 1.21
 
