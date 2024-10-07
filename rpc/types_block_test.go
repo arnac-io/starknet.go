@@ -11,7 +11,7 @@ import (
 	"testing"
 
 	"github.com/NethermindEth/juno/core/felt"
-	"github.com/NethermindEth/starknet.go/utils"
+	"github.com/arnac-io/starknet.go/utils"
 	"github.com/stretchr/testify/require"
 )
 
@@ -269,6 +269,7 @@ func TestBlockWithReceipts(t *testing.T) {
 				require.NotEmpty(pBlock.ParentHash, "Error in PendingBlockWithReceipts ParentHash")
 				require.NotEmpty(pBlock.SequencerAddress, "Error in PendingBlockWithReceipts SequencerAddress")
 				require.NotEmpty(pBlock.Timestamp, "Error in PendingBlockWithReceipts Timestamp")
+				require.NotEmpty(pBlock.Transactions, "Error in PendingBlockWithReceipts Transactions")
 			}
 
 		default:

@@ -18,7 +18,7 @@ import (
 
 	junoCrypto "github.com/NethermindEth/juno/core/crypto"
 	"github.com/NethermindEth/juno/core/felt"
-	"github.com/NethermindEth/starknet.go/utils"
+	"github.com/arnac-io/starknet.go/utils"
 )
 
 var Curve StarkCurve
@@ -603,7 +603,7 @@ func (sc StarkCurve) PoseidonArray(felts ...*felt.Felt) *felt.Felt {
 // Returns:
 // - *felt.Felt: pointer to a felt.Felt
 // - error: An error if any
-func (sc StarkCurve) StarknetKeccak(b []byte) *felt.Felt {
+func (sc StarkCurve) StarknetKeccak(b []byte) (*felt.Felt, error) {
 	return junoCrypto.StarknetKeccak(b)
 }
 

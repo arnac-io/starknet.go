@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/NethermindEth/starknet.go/curve"
+	"github.com/arnac-io/starknet.go/curve"
 )
 
 type FixedSizeMerkleTree struct {

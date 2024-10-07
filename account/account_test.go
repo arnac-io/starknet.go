@@ -11,13 +11,13 @@ import (
 	"time"
 
 	"github.com/NethermindEth/juno/core/felt"
-	"github.com/NethermindEth/starknet.go/account"
-	"github.com/NethermindEth/starknet.go/contracts"
-	"github.com/NethermindEth/starknet.go/devnet"
-	"github.com/NethermindEth/starknet.go/hash"
-	"github.com/NethermindEth/starknet.go/mocks"
-	"github.com/NethermindEth/starknet.go/rpc"
-	"github.com/NethermindEth/starknet.go/utils"
+	"github.com/arnac-io/starknet.go/account"
+	"github.com/arnac-io/starknet.go/contracts"
+	"github.com/arnac-io/starknet.go/devnet"
+	"github.com/arnac-io/starknet.go/hash"
+	"github.com/arnac-io/starknet.go/mocks"
+	"github.com/arnac-io/starknet.go/rpc"
+	"github.com/arnac-io/starknet.go/utils"
 	"github.com/joho/godotenv"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/mock/gomock"
@@ -1135,7 +1135,8 @@ func TestAddDeclareTxn(t *testing.T) {
 	var class rpc.ContractClass
 	err = json.Unmarshal(content, &class)
 	require.NoError(t, err)
-	classHash := hash.ClassHash(class)
+	classHash, err := hash.ClassHash(class)
+	require.NoError(t, err)
 
 	// Compiled Class Hash
 	content2, err := os.ReadFile("./tests/hello_world_compiled.casm.json")
@@ -1194,7 +1195,6 @@ func TestAddDeclareTxn(t *testing.T) {
 // - []devnet.TestAccount: a slice of test accounts
 // - error: an error, if any
 func newDevnet(t *testing.T, url string) (*devnet.DevNet, []devnet.TestAccount, error) {
-	t.Helper()
 	devnet := devnet.NewDevNet(url)
 	acnts, err := devnet.Accounts()
 	return devnet, acnts, err
